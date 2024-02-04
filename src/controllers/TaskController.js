@@ -22,4 +22,25 @@ async function store(req,res)
     return res.json({task,user})
 }
 
-module.exports = {index,store}
+async function show(req,res)
+{
+    const {id} = req.params
+    const {user_id} = req.headers
+
+    try{
+    var user = await User.findById(user_id)
+    }catch(err){
+        return res.json({message:"Usuario nao existe"})
+    }
+
+    let task = await Task.findById(id)
+
+    if(!user.tasks.includes(String(task._id)))
+    {
+        return res.status(400).json({message:"Nao autorizado"})
+    }
+
+    return res.json(task)
+}
+
+module.exports = {index,store,show}

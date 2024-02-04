@@ -24,7 +24,7 @@ async function store(req,res)
 
 async function index(req,res)
 {
-    let user = await User.find()
+    let user = await User.find().populate('tasks')
     return res.json(user)      
 }
 

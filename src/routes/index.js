@@ -12,5 +12,6 @@ routes.post('/sessions/',SessionController.store)
 //Tasks
 routes.get('/tasks',TaskController.index)
 routes.post('/tasks',TaskController.store)
+routes.get('/tasks/:id', TaskController.show)
 
 module.exports = routes
