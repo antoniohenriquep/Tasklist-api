@@ -2,8 +2,11 @@ const express = require('express')
 const mongoose = require('mongoose')
 const { mongoURI } = require('./src/config/db')
 const routes = require('./src/routes')
-
+const cors = require('cors')
 const app = express()
+
+app.use(cors())
+
 
 //Mongoose
 mongoose.connect(mongoURI,{ 
