@@ -10,7 +10,7 @@ async function index(req,res)
 async function store(req,res)
 {
     const {name, date} = req.body
-    const {user_id} = req.headers
+    const {user_id} = req
 
     let task = await Task.create({
         name,

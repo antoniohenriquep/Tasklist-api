@@ -2,7 +2,7 @@ const {Router} = require('express')
 
 const SessionController = require('../controllers/SessionController')
 const TaskController = require('../controllers/TaskController')
-
+const {isAuthenticated} = require('../middlewares/isAuthenticated')
 const routes = Router()
 
 //Sessions
@@ -12,7 +12,7 @@ routes.post('/login',SessionController.login)
 
 //Tasks
 routes.get('/tasks',TaskController.index)
-routes.post('/tasks',TaskController.store)
+routes.post('/tasks',isAuthenticated, TaskController.store)
 routes.get('/tasks/:id', TaskController.show)
 
 module.exports = routes
