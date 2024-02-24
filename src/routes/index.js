@@ -11,8 +11,8 @@ routes.post('/register',SessionController.store)
 routes.post('/login',SessionController.login)
 
 //Tasks
-routes.get('/tasks',TaskController.index)
+routes.get('/tasks',isAuthenticated, TaskController.index)
 routes.post('/tasks',isAuthenticated, TaskController.store)
-routes.get('/tasks/:id', TaskController.show)
+routes.get('/tasks/:id', isAuthenticated, TaskController.show)
 
 module.exports = routes

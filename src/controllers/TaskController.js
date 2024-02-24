@@ -3,8 +3,9 @@ const User = require('../models/User')
 
 async function index(req,res)
 {
-    const tasks = await Task.find()
-    return res.json(tasks)
+    const {user_id} = req
+    const user = await User.findOne({_id: user_id}).populate('tasks')
+    return res.json(user.tasks)
 }
 
 async function store(req,res)
@@ -20,7 +21,7 @@ async function store(req,res)
     let user = await User.findOneAndUpdate({_id:user_id},{$push:{tasks:task._id}})
 
     return res.json({task,user})
-}
+} 
 
 async function show(req,res)
 {
