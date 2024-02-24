@@ -44,4 +44,22 @@ async function show(req,res)
     return res.json(task)
 }
 
-module.exports = {index,store,show}
+async function update(req,res)
+{
+    const {id} = req.params
+    const {name,date} = req.body
+
+    await Task.updateOne({_id:id},{
+        name,
+        date
+    })
+
+    return res.status(200).json({message:"ok"})
+}
+
+async function complete(req,res)
+{
+
+}
+
+module.exports = {index,store,show,update} 

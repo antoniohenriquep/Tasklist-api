@@ -14,5 +14,6 @@ routes.post('/login',SessionController.login)
 routes.get('/tasks',isAuthenticated, TaskController.index)
 routes.post('/tasks',isAuthenticated, TaskController.store)
 routes.get('/tasks/:id', isAuthenticated, TaskController.show)
+routes.put('/tasks/:id', isAuthenticated, TaskController.update)
 
 module.exports = routes
