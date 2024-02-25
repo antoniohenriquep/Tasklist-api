@@ -15,6 +15,7 @@ routes.get('/tasks',isAuthenticated, TaskController.index)
 routes.post('/tasks',isAuthenticated, TaskController.store)
 routes.get('/tasks/:id', isAuthenticated, TaskController.show)
 routes.put('/tasks/:id', isAuthenticated, TaskController.update)
+routes.put('/tasks/complete/:id', isAuthenticated, TaskController.complete)
 routes.delete('/tasks/:id', isAuthenticated, TaskController.remove)
 
 module.exports = routes

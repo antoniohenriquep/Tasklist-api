@@ -59,6 +59,17 @@ async function update(req,res)
 
 async function complete(req,res)
 {
+    const {id} = req.params
+    const {done} = req.body
+
+    await Task.updateOne({_id:id},{
+        done
+    })
+
+    const {user_id} = req
+    const user = await User.findOne({_id: user_id}).populate('tasks')
+    console.log(user.tasks)
+    return res.json(user.tasks)
 
 }
 
@@ -68,7 +79,12 @@ async function remove(req,res)
     const {id} = req.params
     await Task.findByIdAndDelete(id)
 
-    return res.status(200).json({message:"ok"})
+    const {user_id} = req
+    const user = await User.findOne({_id: user_id}).populate('tasks')
+    console.log(user.tasks)
+    return res.json(user.tasks)
+
+
 }
 
-module.exports = {index,store,show,update,remove}
+module.exports = {index,store,show,update,remove,complete}
