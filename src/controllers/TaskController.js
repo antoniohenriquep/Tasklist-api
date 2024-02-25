@@ -62,4 +62,13 @@ async function complete(req,res)
 
 }
 
-module.exports = {index,store,show,update} 
+
+async function remove(req,res)
+{
+    const {id} = req.params
+    await Task.findByIdAndDelete(id)
+
+    return res.status(200).json({message:"ok"})
+}
+
+module.exports = {index,store,show,update,remove}
