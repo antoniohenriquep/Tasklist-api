@@ -9,7 +9,17 @@ const TaskSchema = new Schema({
     done:{
         type: Boolean,
         default: false
+    },
+    priority:{
+        type: String,
+        default:'normal'
     }
 })
 
+/*
+Priority List:
+normal - green
+important - yellow
+urgent - red
+*/
 module.exports = model('Task',TaskSchema)
